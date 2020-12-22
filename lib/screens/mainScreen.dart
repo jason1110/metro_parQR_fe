@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 // import '../services/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'scanner.dart';
 
 
 class MainScreen extends StatefulWidget {
@@ -88,28 +89,34 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[900],
+      backgroundColor: Colors.lightGreen[100],
       appBar: AppBar(
         title: Text("Park"),
         centerTitle: true,
       ),
       body:  Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(80.0),
-              child: SizedBox(
-                height: 200.0,
-                child: GoogleMap(
-                  mapType: MapType.normal,
-                  initialCameraPosition: initialLocation,
-                  markers: Set.of((marker != null) ? [marker] : []),
-                  circles: Set.of((circle != null) ? [circle] : []),
-                  onMapCreated: (GoogleMapController controller) {
-                  _controller = controller;
-                  },
-                ),
+            SizedBox(
+              height: 300,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                initialCameraPosition: initialLocation,
+                markers: Set.of((marker != null) ? [marker] : []),
+                circles: Set.of((circle != null) ? [circle] : []),
+                onMapCreated: (GoogleMapController controller) {
+                _controller = controller;
+                },
               ),
+            ),
+            RaisedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context, '/scanner'
+                );
+              },
+              child: Text('Scan ParQR code'),
             ),
           ],
         ),
