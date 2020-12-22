@@ -10,6 +10,9 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="metro_parqr_fe"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+          android:name="com.google.android.geo.API_KEY"
+          android:value="AIzaSyDWD2vl-Z0bbKpkHsnglXBtaMSTDTO7RTE" />
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
