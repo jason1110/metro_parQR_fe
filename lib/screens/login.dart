@@ -31,7 +31,31 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlatButton(
+            RichText(
+              text: TextSpan(
+                text: 'Metro',
+                style: TextStyle(
+                  fontSize: 50,
+                ),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'ParQR',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.lightGreen,
+                    ),
+                  )
+                ],
+                ),
+              ),
+            OutlineButton(
+              borderSide: BorderSide(
+                color: Colors.lightGreen,
+                width: 3,
+                ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(18.0)
+              ),
               child: Text("Login"),
               onPressed: () {
                 Navigator.pushNamed(

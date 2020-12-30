@@ -1,11 +1,17 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter/services.dart';
-// import '../services/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'scanner.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:http/http.dart' as http;
+import 'scannerScreen.dart';
+import '../models/meter.dart';
+import '../services/geolocator.dart';
+import 'meterScreen.dart';
+
 
 
 class MainScreen extends StatefulWidget {
@@ -15,9 +21,57 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
+  
+  Future<Meter> futureMeter;
+
+  String qrCodeResult;
+
+Future<Meter> fetchMeter() async {
+  final response =
+      await http.get('$qrCodeResult');
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return Meter.fromJson(jsonDecode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load Meter');
+  }
+}
+
+
+
+@override
+  void initState() {
+    super.initState();
+    
+  }
+
+  Future<void> scanQRCode() async {
+    String barcodeScanSettings;
+  try {
+    barcodeScanSettings = await FlutterBarcodeScanner.scanBarcode(
+      "#ff6666", 
+      "Go Back", 
+      true, 
+      ScanMode.QR);
+      print('barcodeScanSettings: $barcodeScanSettings');
+  } on PlatformException {
+    barcodeScanSettings = 'Failed to get platform version.';
+  }
+    if(!mounted) return;
+    setState(() {
+      qrCodeResult = barcodeScanSettings;
+      futureMeter = fetchMeter();
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MeterInfo(qrCodeInfo: futureMeter)));
+    print('qrCodeResult: $qrCodeResult');
+    });
+}
+
   StreamSubscription _locationSubscription;
   Location _locationTracker = Location();
-  Marker marker;
+  Marker carMarker;
   Circle circle;
   GoogleMapController _controller;
   
@@ -34,7 +88,7 @@ class _MainScreenState extends State<MainScreen> {
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
     LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
     this.setState(() {
-      marker = Marker(
+      carMarker = Marker(
         markerId: MarkerId('home'),
         position: latlng,
         rotation: newLocalData.heading,
@@ -96,33 +150,70 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body:  Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
             SizedBox(
               height: 300,
               child: GoogleMap(
                 mapType: MapType.normal,
                 initialCameraPosition: initialLocation,
-                markers: Set.of((marker != null) ? [marker] : []),
+                markers: Set.of((carMarker != null) ? [carMarker] : []),
                 circles: Set.of((circle != null) ? [circle] : []),
                 onMapCreated: (GoogleMapController controller) {
                 _controller = controller;
                 },
               ),
             ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context, '/scanner'
-                );
-              },
-              child: Text('Scan ParQR code'),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: RaisedButton(
+                onPressed: () => scanQRCode(),
+                child: Text('Scan ParQR code'),
+                color: Colors.lightGreen,
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.green[800]),
+                )
+              ),
             ),
+            // Text('Scan result $qrCodeResult'),
+            // FutureBuilder<Meter>(
+            //   future: futureMeter,
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       return Card(
+            //         child: Padding(
+            //           padding: const EdgeInsets.all(8.0),
+            //           child: Center(
+            //             child: Column(
+            //               children: [
+            //                 Text("Free Hours: ${snapshot.data.freeTime}"),
+            //                 Text("Maximum length of stay: ${snapshot.data.maxStay} hours"),
+            //                 Text("Meter ID: ${snapshot.data.id}"),
+            //               ],
+            //             ),
+            //           ),
+            //         )
+            //         );
+            //     } else if (snapshot.hasError) {
+            //       return Text("${snapshot.error}");
+            //     }
+
+            //     // By default, show a loading spinner.
+            //     return CircularProgressIndicator(
+            //       backgroundColor: Colors.transparent,
+            //     );
+            //   },
+            // ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.greenAccent[400],
         child: Icon(Icons.location_searching),
+        elevation: 8.0,
         onPressed: () {
           getCurrentLocation();
         },

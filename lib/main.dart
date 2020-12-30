@@ -4,7 +4,8 @@ import 'package:geolocator/geolocator.dart';
 import 'services/geolocator.dart';
 import 'screens/login.dart';
 import 'screens/mainScreen.dart';
-import 'screens/scanner.dart';
+import 'screens/scannerScreen.dart';
+import 'screens/meterScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => LoginScreen(),
         '/mainScreen': (context) => MainScreen(),
-        '/scanner': (context) => Scanner(),
+        '/scannerScreen': (context) => ScannerScreen(),
+        '/meterScreen': (context) => MeterInfo(),
       }
     );
   }

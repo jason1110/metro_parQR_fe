@@ -1,48 +1,47 @@
 // import 'dart:async';
 // import 'dart:convert';
+// import '../models/meter.dart';
 
 // import 'package:flutter/material.dart';
 // import 'package:http/http.dart' as http;
 
 // final String baseURL = "https://metro-parqr.herokuapp.com";
 // final String usersURL = "$baseURL/users";
+// final String metersURL = "$baseURL/meters";
 
 // class HttpService {
 
+// // SHOW
 
-
-
-// SHOW
-
-// // Future<Album> fetchAlbum() async {
-// //   final response =
-// //       await http.get('https://metro-parqr.herokuapp.com/users/1');
-// //       print(response.body);
-// //   if (response.statusCode == 200) {
-// //     // If the server did return a 200 OK response,
-// //     // then parse the JSON.
-// //     return Album.fromJson(jsonDecode(response.body));
-// //   } else {
-// //     // If the server did not return a 200 OK response,
-// //     // then throw an exception.
-// //     throw Exception('Failed to load album');
-// //   }
-// // }
-
-// class MyFetch extends StatefulWidget {
-//   MyFetch({Key key}) : super(key: key);
-
-//   @override
-//   _MyFetchState createState() => _MyFetchState();
+// Future<Meter> fetchMeter() async {
+//   final response =
+//       await http.get('https://metro-parqr.herokuapp.com/meters/1');
+//       print(response.body);
+//   if (response.statusCode == 200) {
+//     // If the server did return a 200 OK response,
+//     // then parse the JSON.
+//     return Meter.fromJson(jsonDecode(response.body));
+//   } else {
+//     // If the server did not return a 200 OK response,
+//     // then throw an exception.
+//     throw Exception('Failed to load Meter');
+//   }
 // }
 
-// class _MyFetchState extends State<MyFetch> {
-//   Future<User> futureUser;
+// class GetMeter extends StatefulWidget {
+//   GetMeter({Key key}) : super(key: key);
+
+//   @override
+//   _GetMeterState createState() => _GetMeterState();
+// }
+
+// class _GetMeterState extends State<GetMeter> {
+//   Future<Meter> futureMeter;
 
 //   @override
 //   void initState() {
 //     super.initState();
-//     futureUser = fetchUser();
+//     futureMeter = fetchMeter();
 //   }
 
 //   @override
@@ -57,12 +56,12 @@
 //           title: Text('User Profile'),
 //         ),
 //         body: Center(
-//           child: FutureBuilder<User>(
-//             future: futureUser,
+//           child: FutureBuilder<Meter>(
+//             future: futureMeter,
 //             builder: (context, snapshot) {
 //               if (snapshot.hasData) {
-//                 print(snapshot.data.email);
-//                 return Text( snapshot.data.email);
+//                 print(snapshot.data.freeTime);
+//                 return Text( snapshot.data.freeTime);
 //               } else if (snapshot.hasError) {
 //                 return Text("${snapshot.error}");
 //               }
@@ -76,6 +75,8 @@
 //     );
 //   }
 // }
+
+
 
 
 
