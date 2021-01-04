@@ -6,6 +6,8 @@ import 'screens/login.dart';
 import 'screens/mainScreen.dart';
 import 'screens/scannerScreen.dart';
 import 'screens/meterScreen.dart';
+import 'screens/timeScreen.dart';
+import 'screens/signUpScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,6 +24,8 @@ class MyApp extends StatelessWidget {
         '/mainScreen': (context) => MainScreen(),
         '/scannerScreen': (context) => ScannerScreen(),
         '/meterScreen': (context) => MeterInfo(),
+        '/timeScreen': (context) => TimeScreen(),
+        '/signUpScreen': (context) => SignUpScreen(),
       }
     );
   }

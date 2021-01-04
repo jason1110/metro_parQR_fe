@@ -1,17 +1,37 @@
-// import 'dart:async';
-// import 'dart:convert';
-// import '../models/meter.dart';
-
-// import 'package:flutter/material.dart';
-// import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
+import '../models/meter.dart';
 
 // final String baseURL = "https://metro-parqr.herokuapp.com";
 // final String usersURL = "$baseURL/users";
 // final String metersURL = "$baseURL/meters";
 
-// class HttpService {
+class NetworkHelper {
 
-// // SHOW
+NetworkHelper(this.url);
+
+final String url;
+
+// // SHOW METER
+
+Future fetchMeter() async {
+  http.Response response =
+      await http.get(url);
+  if (response.statusCode == 200) {
+    String data = response.body;
+    var decodedData = jsonDecode(data);
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return decodedData;
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load Meter');
+  }
+}
+
 
 // Future<Meter> fetchMeter() async {
 //   final response =
@@ -74,7 +94,7 @@
 //       ),
 //     );
 //   }
-// }
+}
 
 
 
