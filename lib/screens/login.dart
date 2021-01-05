@@ -33,7 +33,6 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Row(
                 children: <Widget>[
-                  Text('Login'),
                   Spacer(),
                   IconButton(
                     icon: Icon(Icons.cancel, color: Colors.green, size: 25,),
@@ -80,7 +79,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
                 ),
               ),
+            SizedBox(height: 50.0,),
             OutlineButton(
+              highlightColor: Colors.lightGreen[50],
+              highlightedBorderColor: Colors.lightGreenAccent,
               borderSide: BorderSide(
                 color: Colors.lightGreen,
                 width: 3,
@@ -95,7 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 _formModal(context);
               },
             ),
+            SizedBox(height: 20.0,),
             OutlineButton(
+              highlightColor: Colors.lightGreen[50],
+              highlightedBorderColor: Colors.lightGreenAccent,
               borderSide: BorderSide(
                 color: Colors.lightGreen,
                 width: 3,

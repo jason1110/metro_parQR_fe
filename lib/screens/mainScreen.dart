@@ -64,6 +64,7 @@ String qrCodeResult;
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CityMap(),
+            
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: RaisedButton(

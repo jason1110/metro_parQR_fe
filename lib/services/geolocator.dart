@@ -27,6 +27,7 @@ class _CityMapState extends State<CityMap> {
 StreamSubscription _locationSubscription;
 Location _locationTracker = Location();
 Marker marker;
+Marker meterMarker;
 Circle circle;
 GoogleMapController _controller;
 
@@ -42,6 +43,7 @@ Future<Uint8List> getMarker() async {
 
   void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
     LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
+    LatLng meterLoc = LatLng(39.746633, -104.981047);
     this.setState(() {
       marker = Marker(
         markerId: MarkerId('home'),
@@ -53,6 +55,15 @@ Future<Uint8List> getMarker() async {
         anchor: Offset(0.5, 0.5),
         icon: BitmapDescriptor.fromBytes(imageData)
       );
+      meterMarker = Marker(
+        markerId: MarkerId('meter'),
+        position: meterLoc,
+        draggable: false,
+        zIndex: 1,
+        flat: false,
+        anchor: Offset(1, 1),
+        icon: BitmapDescriptor.defaultMarkerWithHue(120),
+      );  
       circle = Circle(
         circleId: CircleId('car'),
         radius: newLocalData.accuracy,
@@ -104,11 +115,11 @@ Future<Uint8List> getMarker() async {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 300,
+        height: 400,
         child: GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: initialLocation,
-          markers: Set.of((marker != null) ? [marker] : []),
+          markers: Set.of((marker != null) ? [marker, meterMarker] : []),
           circles: Set.of((circle != null) ? [circle] : []),
           onMapCreated: (GoogleMapController controller) {
           _controller = controller;

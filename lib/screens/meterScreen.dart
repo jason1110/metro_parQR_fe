@@ -82,7 +82,7 @@ String freeTime;
                     ),
                     NumberPicker.integer(initialValue: hour,
                     minValue: 0,
-                    maxValue: 3,
+                    maxValue: 2,
                     listViewWidth: 60.0,
                     onChanged: (val){
                         setState((){
@@ -103,7 +103,7 @@ String freeTime;
                     NumberPicker.integer(initialValue: minute,
                     minValue: 0,
                     maxValue: 59,
-                    step: 15,
+                    step: 1,
                     listViewWidth: 60.0,
                     onChanged: (val){
                         setState((){
