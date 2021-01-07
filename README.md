@@ -18,7 +18,7 @@ Metro ParQR is my Idea for a solution to Parking Meter woes in a city, It makes 
 
 ## Demo Video
 
-https://drive.google.com/file/d/1aMKQYoRND3OoB61s6orOrjLEgPzX3Dq6/view?usp=sharing
+<iframe src="https://drive.google.com/file/d/1aMKQYoRND3OoB61s6orOrjLEgPzX3Dq6/preview" width="640" height="480"></iframe>
 
 ## Getting Started
  
