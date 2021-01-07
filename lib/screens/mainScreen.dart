@@ -54,10 +54,11 @@ String qrCodeResult;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen[100],
+      backgroundColor: Color.fromRGBO(241,253,246,1),
       appBar: AppBar(
-        title: Text("Park"),
+        title: Text("On Your Mark"),
         centerTitle: true,
+        backgroundColor: Color.fromRGBO(20,17,21,1),
       ),
       body:  Center(
         child: Column(
@@ -66,16 +67,20 @@ String qrCodeResult;
             CityMap(),
             
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: RaisedButton(
                 onPressed: () => scanQRCode(),
-                child: Text('Scan ParQR code'),
-                color: Colors.lightGreen,
-                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-                elevation: 8.0,
+                child: Text('Scan ParQR code',
+                style: TextStyle(
+                  fontSize: 25.0,
+                  
+                ),),
+                color: Color.fromRGBO(62,176,0,1),
+                padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 75.0),
+                elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.green[800]),
+                  // side: BorderSide(color: Colors.green[700]),
                 )
               ),
             ),

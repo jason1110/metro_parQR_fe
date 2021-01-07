@@ -67,6 +67,7 @@ Future<Uint8List> getMarker() async {
       circle = Circle(
         circleId: CircleId('car'),
         radius: newLocalData.accuracy,
+        strokeWidth: 3,
         zIndex: 1,
         strokeColor: Colors.lightGreen,
         center: latlng,
@@ -92,7 +93,7 @@ Future<Uint8List> getMarker() async {
             bearing: 192.8334901395799,
             target: LatLng(newLocalData.latitude, newLocalData.longitude),
             tilt: 0,
-            zoom: 15.00,
+            zoom: 17.25,
             ),
           ));
           updateMarkerAndCircle(newLocalData, imageData);
@@ -115,7 +116,7 @@ Future<Uint8List> getMarker() async {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 400,
+        height: 650,
         child: GoogleMap(
           mapType: MapType.normal,
           initialCameraPosition: initialLocation,

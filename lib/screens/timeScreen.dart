@@ -10,7 +10,7 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:http/http.dart' as http;
 import 'scannerScreen.dart';
 import '../models/meter.dart';
-import '../services/geolocator.dart';
+import '../services/meterLocation.dart';
 import 'package:metro_parqr_fe/screens/mainScreen.dart';
 import '../services/httpRequests.dart';
 
@@ -116,7 +116,7 @@ Future<void> _showMyDialog() async {
         content: SingleChildScrollView(
           child: ListBody(
             children: <Widget>[
-              Text('You cannot set more time than the maximum stay'),
+              Text('You cannot stay longer than the maximum amount'),
             ],
           ),
         ),
@@ -136,16 +136,16 @@ Future<void> _showMyDialog() async {
     @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen[100],
+      backgroundColor: Color.fromRGBO(241,253,246,1),
       appBar: AppBar(
-        title: Text("Park"),
+        title: Text("Go"),
         centerTitle: true,
       ),
       body:  Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            CityMap(),
+            MeterLocation(),
             Text(
               displayTime,
               style: TextStyle(
@@ -162,13 +162,17 @@ Future<void> _showMyDialog() async {
                   : timeForTimer += (30 * 60);
                   print(timeForTimer);
                 },
-                child: Text('Add 30 Minutes'),
-                color: Colors.lightGreen,
+                child: Text('Add 30 Minutes',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                color: Color.fromRGBO(62,176,0,1),
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 elevation: 8.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.green[800]),
+                  // side: BorderSide(color: Colors.green[800]),
                 )
               ),
             ),
@@ -180,13 +184,17 @@ Future<void> _showMyDialog() async {
                     context, MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 },
-                child: Text('Leave'),
-                color: Colors.lightGreen,
+                child: Text('Leave',
+                    style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                color: Color.fromRGBO(62,176,0,1),
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 elevation: 8.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  side: BorderSide(color: Colors.green[800]),
+                  // side: BorderSide(color: Colors.green[800]),
                 )
               ),
             ),

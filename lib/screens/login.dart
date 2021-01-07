@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: <Widget>[
                   Spacer(),
                   IconButton(
-                    icon: Icon(Icons.cancel, color: Colors.green, size: 25,),
+                    icon: Icon(Icons.cancel, color: Color.fromRGBO(62,176,0,1), size: 25,),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -58,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
       // appBar: AppBar(
       //   title: Text("Location"),
       // ),
+      backgroundColor: Color.fromRGBO(20,17,21,1),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: 'ParQR',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Colors.lightGreen,
+                      color: Color.fromRGBO(62,176,0,1),
                     ),
                   )
                 ],
@@ -83,32 +84,38 @@ class _LoginScreenState extends State<LoginScreen> {
             OutlineButton(
               highlightColor: Colors.lightGreen[50],
               highlightedBorderColor: Colors.lightGreenAccent,
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
               borderSide: BorderSide(
-                color: Colors.lightGreen,
+                color: Color.fromRGBO(62,176,0,1),
                 width: 3,
                 ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(18.0)
               ),
-              child: Text("Login"),
+              child: Text("Login",
+              style: TextStyle(
+                fontSize: 18,
+                ),
+              ),
               onPressed: () {
                 login = true;
                 signUp = false;
                 _formModal(context);
               },
             ),
-            SizedBox(height: 20.0,),
-            OutlineButton(
-              highlightColor: Colors.lightGreen[50],
-              highlightedBorderColor: Colors.lightGreenAccent,
-              borderSide: BorderSide(
-                color: Colors.lightGreen,
-                width: 3,
-                ),
+            SizedBox(height: 10.0,),
+            RaisedButton(
+              color: Color.fromRGBO(62,176,0,1),
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
+              elevation: 1.0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0)
+                borderRadius: BorderRadius.circular(18.0),
               ),
-              child: Text("Sign Up"),
+              child: Text("Sign Up",
+              style: TextStyle(
+                fontSize: 18,
+                ),
+              ),
               onPressed: () {
                 signUp = true;
                 login = false;
