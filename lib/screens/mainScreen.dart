@@ -1,90 +1,55 @@
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:flutter/services.dart';
-// import '../services/geolocator.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'scanner.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:http/http.dart' as http;
+import 'scannerScreen.dart';
+import '../models/meter.dart';
+import '../services/geolocator.dart';
+import '../services/httpRequests.dart';
+import 'meterScreen.dart';
+
 
 
 class MainScreen extends StatefulWidget {
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
 
-  StreamSubscription _locationSubscription;
-  Location _locationTracker = Location();
-  Marker marker;
-  Circle circle;
-  GoogleMapController _controller;
-  
-  static final CameraPosition initialLocation = CameraPosition(
-  target: LatLng(39.75319, -105.00009),
-  zoom: 14.4746,
-  );
+String qrCodeResult;
 
-  Future<Uint8List> getMarker() async {
-    ByteData byteData = await DefaultAssetBundle.of(context).load("images/car_icon.png");
-    return byteData.buffer.asUint8List();
+@override
+  void initState() {
+    super.initState();
+    
   }
 
-  void updateMarkerAndCircle(LocationData newLocalData, Uint8List imageData) {
-    LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
-    this.setState(() {
-      marker = Marker(
-        markerId: MarkerId('home'),
-        position: latlng,
-        rotation: newLocalData.heading,
-        draggable: false,
-        zIndex: 2,
-        flat: true,
-        anchor: Offset(0.5, 0.5),
-        icon: BitmapDescriptor.fromBytes(imageData)
-      );
-      circle = Circle(
-        circleId: CircleId('car'),
-        radius: newLocalData.accuracy,
-        zIndex: 1,
-        strokeColor: Colors.lightGreen,
-        center: latlng,
-        fillColor: Colors.lightGreen.withAlpha(70)
-      );
-    });
-  }
-
-  void getCurrentLocation() async {
+    Future<void> scanQRCode() async {
+      String barcodeScanSettings;
     try {
-      Uint8List imageData = await getMarker();
-      var location = await _locationTracker.getLocation();
-
-      updateMarkerAndCircle(location, imageData);
-
-      if (_locationSubscription != null) {
-        _locationSubscription.cancel();
-      }
-
-      _locationSubscription = _locationTracker.onLocationChanged.listen((newLocalData){
-        if (_controller != null) {
-          _controller.animateCamera(CameraUpdate.newCameraPosition(new CameraPosition(
-            bearing: 192.8334901395799,
-            target: LatLng(newLocalData.latitude, newLocalData.longitude),
-            tilt: 0,
-            zoom: 15.00,
-            ),
-          ));
-          updateMarkerAndCircle(newLocalData, imageData);
-        }
-      });
-    } on PlatformException catch (error) {
-      if (error.code == 'PERMISSION_DENIED') {
-        debugPrint('Permission Denied');
-      }
+      barcodeScanSettings = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666", 
+        "Go Back", 
+        true, 
+        ScanMode.QR);
+        print('barcodeScanSettings: $barcodeScanSettings');
+    } on PlatformException {
+      barcodeScanSettings = 'Failed to get platform version.';
     }
-  }
-
+      if(!mounted) return;
+        qrCodeResult = barcodeScanSettings;
+        NetworkHelper networkHelper = NetworkHelper(qrCodeResult);
+        var meterData = await networkHelper.fetchMeter();  
+        Navigator.push(context, MaterialPageRoute(builder: (context) => MeterInfo(qrCodeInfo: meterData)));
+    }
 
   @override
   Widget build(BuildContext context) {
@@ -96,36 +61,26 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body:  Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              height: 300,
-              child: GoogleMap(
-                mapType: MapType.normal,
-                initialCameraPosition: initialLocation,
-                markers: Set.of((marker != null) ? [marker] : []),
-                circles: Set.of((circle != null) ? [circle] : []),
-                onMapCreated: (GoogleMapController controller) {
-                _controller = controller;
-                },
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            CityMap(),
+            
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: RaisedButton(
+                onPressed: () => scanQRCode(),
+                child: Text('Scan ParQR code'),
+                color: Colors.lightGreen,
+                padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+                elevation: 8.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.green[800]),
+                )
               ),
-            ),
-            RaisedButton(
-              onPressed: () {
-                Navigator.pushNamed(
-                  context, '/scanner'
-                );
-              },
-              child: Text('Scan ParQR code'),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.location_searching),
-        onPressed: () {
-          getCurrentLocation();
-        },
       ),
     );
   }
