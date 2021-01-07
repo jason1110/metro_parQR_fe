@@ -29,7 +29,7 @@ Node  --> Not unless you want to make changes to the backend. which can be clone
 Dart
 Flutter
 Android Studio
-Xcode --> Prewarning: this app was developed using an Android phone, I did not tailor this app for iOS, so I'm not sure how it will run.
+Xcode -- this app was developed using an Android phone, I did not tailor this app for iOS, so I'm not sure how it will run.
 I used VSCode for this, so I'd recommend installing the Dart and Flutter extensions
 
 #Installation
