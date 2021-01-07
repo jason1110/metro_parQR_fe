@@ -28,8 +28,16 @@ void _submit() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextFormField(
+            cursorColor: Color.fromRGBO(235,255,235,1),
             decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Color.fromRGBO(101,184,0,0.6)),   
+                ),  
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color.fromRGBO(235,255,235,1)),
+                ),
               labelText: 'name',
+              labelStyle: TextStyle(color: Color.fromRGBO(235,255,235,0.6))
             ),
             validator: (value) {
               if (value.isEmpty) {
@@ -39,8 +47,16 @@ void _submit() {
             },
           ),
           TextFormField(
+            cursorColor: Color.fromRGBO(235,255,235,1),
             decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Color.fromRGBO(62,176,0,1)),   
+                ),  
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color.fromRGBO(235,255,235,1)),
+                ),
               labelText: 'email',
+              labelStyle: TextStyle(color: Color.fromRGBO(235,255,235,0.6))
             ),
             validator: (value) {
               if (value.isEmpty) {
@@ -50,8 +66,18 @@ void _submit() {
             },
           ),
           TextFormField(
+            cursorColor: Color.fromRGBO(235,255,235,1),
+            obscureText: true,
             decoration: const InputDecoration(
+                enabledBorder: UnderlineInputBorder(      
+                  borderSide: BorderSide(color: Color.fromRGBO(62,176,0,1)),   
+                ),  
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(color: Color.fromRGBO(235,255,235,1)),
+                ),
               labelText: 'password',
+              
+              labelStyle: TextStyle(color: Color.fromRGBO(235,255,235,0.6))
             ),
             validator: (value) {
               if (value.isEmpty) {
@@ -60,11 +86,21 @@ void _submit() {
               return null;
             },
           ),
-          ElevatedButton(
-            onPressed: () {
-              _submit();
-            },
-            child: Text('Submit'),
+          SizedBox(height: 20.0,),
+          Center(
+            child: RaisedButton(
+              onPressed: () {
+                _submit();
+              },
+              child: Text('Submit'),
+              color: Color.fromRGBO(62,176,0,1),
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 40.0),
+              elevation: 1.0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18.0),
+                  side: BorderSide(color: Colors.green[700]),
+                ),
+            )
           )
         ]
       )

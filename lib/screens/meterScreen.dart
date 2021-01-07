@@ -49,10 +49,18 @@ String freeTime;
   int timeForTimer = 0;
   String displayTime = "";
 
+  final rowSpacer = TableRow(
+    children: [
+      SizedBox(
+        height: 20,
+      ),
+      SizedBox(
+        height: 20,
+      )
+    ]
+  );
 
-  // saveTime(){
-  //   return displayTime = '0${hour} : ${min} : ${sec}';
-  // }
+
 
  String constructTime(int seconds) {
   return formattime(hour) + ":" + formattime(minute) + ":" + formattime(second);
@@ -152,6 +160,12 @@ String freeTime;
                       displayTime = constructTime(seconds);
                     });
                     },
+                  elevation: 8.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(18.0),
+                    side: BorderSide(color: Colors.green[700]),
+                  ),
+                  color: Color.fromRGBO(62,176,0,1),
                   padding: EdgeInsets.symmetric(
                   horizontal: 20.0,
                   vertical: 10.0
@@ -160,7 +174,6 @@ String freeTime;
                     'Set Timer',
                     style: TextStyle(
                       fontSize: 18.0,
-                      color: Colors.green,
                     )
                   ),
                 ),
@@ -199,7 +212,7 @@ void _setTimerModal (context) {
                   Text('Set Timer'),
                   Spacer(),
                   IconButton(
-                  icon: Icon(Icons.cancel, color: Colors.green, size: 25,),
+                  icon: Icon(Icons.cancel, color: Color.fromRGBO(62,176,0,1), size: 25,),
                   onPressed: () {
                     Navigator.of(context).pop();
                       },
@@ -220,77 +233,142 @@ void _setTimerModal (context) {
     );
   }
 
-  // void incrementTimer() {
-  //     int counter + 30;
-  // }
-
-  // void decrementTimer() {
-  //   int counter - 30;
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.lightGreen[100],
+      backgroundColor: Color.fromRGBO(241,253,246,1),
       appBar: AppBar(
-        title: Text('MetroParQR'),
+        title: Text('Get Set'),
+        backgroundColor: Color.fromRGBO(20,17,21,1),
         centerTitle: true,
         ),
         body: Center(
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+            Text(
+              'Meter Info',
+              style: TextStyle(
+                color: Color.fromRGBO(20,17,21,1),
+                fontSize: 50.0,
+                )
+            ),
+            SizedBox(height: 30.0),
+            Card(
+              margin: EdgeInsets.all(30.0),
+              elevation: 8,
+              color: Color.fromRGBO(0, 36, 27, 1),
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Center(
+                  child: Table(
+                    children: <TableRow>[ 
+                      rowSpacer,
+                      TableRow(
+                      children: <Widget>[
+                        Text('Meter Id:',
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                        Text('$id',
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                      ]
+                    ),
+                    rowSpacer,
+                      TableRow(
+                      children: <Widget>[
+                        Text('Max Stay:',                         
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                        Text('$maxStay hours',                          
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                      ]
+                    ),
+                    rowSpacer,
+                      TableRow(
+                      children: <Widget>[
+                        Text('Free times:',                         
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                        Text('$freeTime')
+                      ]
+                    ),
+                    rowSpacer,
+                      TableRow(
+                      children: <Widget>[
+                        Text('Normal Rate:',                          
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                        Text('\$$cost /hr',                          
+                          style: TextStyle(
+                            fontSize: 20
+                          ),
+                        ),
+                      ]
+                      ),
+                      rowSpacer,
+                    ],
+                  ),
+                ),
+              )
+            ),
+            SizedBox(height: 20.0),
             Text(
               'How long are you Staying?',
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 20.0,
+                color: Color.fromRGBO(20,17,21,1),
+                fontSize: 25.0,
                 )
             ),
-            Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text('Meter ID: $id'),
-                          Text("Maximum length of stay: ${maxStay} hours"),
-                          Text('${freeTime}'),
-                          Text('Cost: \$$cost/hr'),
-                        ],
-                      ),
-                    ),
-                  )
-                  ),
-              // // By default, show a loading spinner.
-              // return CircularProgressIndicator(
-              //   backgroundColor: Colors.transparent,
-              // );
-            // },
-          // ),
-          FlatButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0)
+            SizedBox(height: 20.0),
+          RaisedButton(
+            child: Text("Set your time",
+                style: TextStyle(
+                fontSize: 22
               ),
-              child: Text("Set your timer"),
-              color: Colors.green,
-              onPressed: () {
-                _setTimerModal(context);
-              },
+            ),            
+            onPressed: () {
+              _setTimerModal(context);
+            },
+            color: Color.fromRGBO(62,176,0,1),
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+            elevation: 4.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            )
           ),
-          Text(
-            '$displayTime',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20.0,
+          Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: Text(
+              '$displayTime',
+              style: TextStyle(
+                color: Color.fromRGBO(20,17,21,1),
+                fontSize: 30.0,
+              ),
             ),
           ),
-          FlatButton(
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0)
+          RaisedButton(
+            child: Text('Park',
+              style: TextStyle(
+                fontSize: 22
               ),
-            child: Text('Park'),
-            color: Colors.green,
+            ),
             onPressed: () {
               Navigator.push(
                 context, MaterialPageRoute(
@@ -298,7 +376,13 @@ void _setTimerModal (context) {
                   )
                 );
               },
-            ),
+            color: Color.fromRGBO(62,176,0,1),
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+            elevation: 4.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18.0),
+            )
+          ),
         ],
       ),
     ),
