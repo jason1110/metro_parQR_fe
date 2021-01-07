@@ -18,7 +18,7 @@ Metro ParQR is my Idea for a solution to Parking Meter woes in a city, It makes 
 
 ## Demo Video
 
-https://drive.google.com/file/d/1aMKQYoRND3OoB61s6orOrjLEgPzX3Dq6/preview
+https://www.loom.com/share/38bc77b4bdc6451ba8a9abaf71a4f424
 
 ## Getting Started
  
@@ -29,7 +29,7 @@ Node  --> Not unless you want to make changes to the backend. which can be clone
 Dart
 Flutter
 Android Studio
-Xcode --> Prewarning: I do not have Xcode installed and did not tailor this app for iOS, so I'm not sure what will be different.
+Xcode --> Prewarning: this app was developed using an Android phone, I did not tailor this app for iOS, so I'm not sure how it will run.
 I used VSCode for this, so I'd recommend installing the Dart and Flutter extensions
 
 #Installation
