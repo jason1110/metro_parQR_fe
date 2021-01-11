@@ -30,7 +30,7 @@ Dart
 Flutter
 Android Studio
 Xcode -- this app was developed using an Android phone, I did not tailor this app for iOS, so I'm not sure how it will run.
-I used VSCode for this, so I'd recommend installing the Dart and Flutter extensions
+I used VSCode for this, so I'd recommend installing the Dart and Flutter extensions if you are using vs code
 
 #Installation
 
