@@ -25,7 +25,7 @@ https://www.loom.com/share/38bc77b4bdc6451ba8a9abaf71a4f424
 
 #Techs to make sure are installed:
 
-Node  --> Not unless you want to make changes to the backend. which can be cloned [here](https://github.com/jason1110/metro-parQR-be)
+Node  --> if you want to make changes to the backend. which can be cloned [here](https://github.com/jason1110/metro-parQR-be)
 Dart
 Flutter
 Android Studio
