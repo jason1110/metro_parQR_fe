@@ -1,16 +1,4 @@
-import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:http/http.dart' as http;
-import 'scannerScreen.dart';
-import '../models/meter.dart';
-import '../services/geolocator.dart';
-import '../services/timer.dart';
 import 'timeScreen.dart';
 import 'package:numberpicker/numberpicker.dart';
 
@@ -18,7 +6,6 @@ class MeterInfo extends StatefulWidget {
 
   MeterInfo({this.qrCodeInfo});
 
-  
   final qrCodeInfo;
 
   @override
@@ -27,9 +14,6 @@ class MeterInfo extends StatefulWidget {
 
 class _MeterInfoState extends State<MeterInfo> {
 
-
-
-// Future<Meter> futureMeter;
 int seconds;
 
 int id;
@@ -347,6 +331,7 @@ void _setTimerModal (context) {
               _setTimerModal(context);
             },
             color: Color.fromRGBO(62,176,0,1),
+            highlightColor: Colors.lightGreen[50],
             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
             elevation: 4.0,
             shape: RoundedRectangleBorder(
@@ -377,6 +362,7 @@ void _setTimerModal (context) {
                 );
               },
             color: Color.fromRGBO(62,176,0,1),
+            highlightColor: Colors.lightGreen[50],  
             padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
             elevation: 4.0,
             shape: RoundedRectangleBorder(
@@ -389,3 +375,8 @@ void _setTimerModal (context) {
     );
   }
 }
+
+
+dynamic unspecifiedVariable = 'any data type can be declared here';
+
+

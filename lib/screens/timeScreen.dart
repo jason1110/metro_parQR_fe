@@ -1,18 +1,8 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:location/location.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:http/http.dart' as http;
-import 'scannerScreen.dart';
-import '../models/meter.dart';
 import '../services/meterLocation.dart';
 import 'package:metro_parqr_fe/screens/mainScreen.dart';
-import '../services/httpRequests.dart';
 
 class TimeScreen extends StatefulWidget {
 
@@ -61,7 +51,6 @@ void startTimer(){
           t.cancel();
           checkTimer = true;
           displayTime = "Expired";
-          // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Page()));
         } 
         else if(timeForTimer < 60) {
           displayTime = timeForTimer <10
@@ -168,11 +157,11 @@ Future<void> _showMyDialog() async {
                   ),
                 ),
                 color: Color.fromRGBO(62,176,0,1),
+                highlightColor: Colors.lightGreen[50],
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 elevation: 8.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  // side: BorderSide(color: Colors.green[800]),
                 )
               ),
             ),
@@ -190,11 +179,11 @@ Future<void> _showMyDialog() async {
                   ),
                 ),
                 color: Color.fromRGBO(62,176,0,1),
+                highlightColor: Colors.lightGreen[50],
                 padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
                 elevation: 8.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  // side: BorderSide(color: Colors.green[800]),
                 )
               ),
             ),

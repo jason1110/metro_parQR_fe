@@ -1,20 +1,10 @@
 import 'dart:async';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:location/location.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:http/http.dart' as http;
-import 'scannerScreen.dart';
-import '../models/meter.dart';
 import '../services/geolocator.dart';
 import '../services/httpRequests.dart';
 import 'meterScreen.dart';
-
-
 
 class MainScreen extends StatefulWidget {
 
@@ -76,6 +66,7 @@ String qrCodeResult;
                   
                 ),),
                 color: Color.fromRGBO(62,176,0,1),
+                highlightColor: Colors.lightGreen[50],  
                 padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 75.0),
                 elevation: 4.0,
                 shape: RoundedRectangleBorder(

@@ -106,6 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: 10.0,),
             RaisedButton(
               color: Color.fromRGBO(62,176,0,1),
+              highlightColor: Colors.lightGreen[50],              
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 36.0),
               elevation: 1.0,
               shape: RoundedRectangleBorder(
