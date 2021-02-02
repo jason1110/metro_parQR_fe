@@ -60,7 +60,7 @@ String qrCodeResult;
               padding: const EdgeInsets.all(10.0),
               child: RaisedButton(
                 onPressed: () => scanQRCode(),
-                child: Text('Scan ParQR code',
+                child: Text('Scan ParQR code!',
                 style: TextStyle(
                   fontSize: 25.0,
                   
