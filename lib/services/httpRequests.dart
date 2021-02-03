@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/material.dart';
-import '../models/meter.dart';
 
 // final String baseURL = "https://metro-parqr.herokuapp.com";
 // final String usersURL = "$baseURL/users";

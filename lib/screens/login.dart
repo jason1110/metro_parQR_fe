@@ -1,10 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:geolocator/geolocator.dart';
-import 'mainScreen.dart';
-import 'signUpScreen.dart';
 import '../services/loginForm.dart';
 import '../services/signUpForm.dart';
 
