@@ -24,14 +24,14 @@ bool inUse;
 String latlng;
 String freeTime;
 
-  bool started = true;
-  bool stopped = true;
-  bool checkTimer = true;
-  int hour = 0;
-  int minute = 0;
-  int second = 0;
-  int timeForTimer = 0;
-  String displayTime = "";
+bool started = true;
+bool stopped = true;
+bool checkTimer = true;
+int hour = 0;
+int minute = 0;
+int second = 0;
+int timeForTimer = 0;
+String displayTime = "";
 
   final rowSpacer = TableRow(
     children: [
@@ -44,15 +44,13 @@ String freeTime;
     ]
   );
 
-
-
- String constructTime(int seconds) {
+  String constructTime(int seconds) {
   return formattime(hour) + ":" + formattime(minute) + ":" + formattime(second);
- }
+  }
 
- String formattime(int timenum) {
+  String formattime(int timenum) {
   return timenum<10?"0" + timenum.toString():timenum.toString();
- }
+  }
 
     Widget timer(){
     return Container(

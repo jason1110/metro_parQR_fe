@@ -17,7 +17,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: SpinKitDoubleBounce(
           color: Colors.white,
           size: 100.0,
-          ),
+        ),
       ),
     );
   }

@@ -12,20 +12,20 @@ class _ScannerScreenState extends State<ScannerScreen> {
   String qrCode;
 
   Future<void> scanQRCode() async {
-  try {
-    final barcodeScanSettings = await FlutterBarcodeScanner.scanBarcode(
-      "#ff6666", 
-      "Go Back", 
-      true, 
-      ScanMode.QR);
-      setState(() {
-      if(!mounted) return;
-        this.qrCode = qrCode;
-      });
-  } on PlatformException {
-    qrCode = 'Failed to get platform version.';
+    try {
+      final barcodeScanSettings = await FlutterBarcodeScanner.scanBarcode(
+        "#ff6666", 
+        "Go Back", 
+        true, 
+        ScanMode.QR);
+        setState(() {
+        if(!mounted) return;
+          this.qrCode = qrCode;
+        });
+    } on PlatformException {
+      qrCode = 'Failed to get platform version.';
+    }
   }
-}
 
   @override
   Widget build(BuildContext context) {

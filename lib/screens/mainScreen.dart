@@ -61,17 +61,16 @@ String qrCodeResult;
               child: RaisedButton(
                 onPressed: () => scanQRCode(),
                 child: Text('Scan ParQR code!',
-                style: TextStyle(
-                  fontSize: 25.0,
-                  
-                ),),
+                  style: TextStyle(
+                    fontSize: 25.0,                  
+                  ),
+                ),
                 color: Color.fromRGBO(62,176,0,1),
                 highlightColor: Colors.lightGreen[50],  
                 padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 75.0),
                 elevation: 4.0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18.0),
-                  // side: BorderSide(color: Colors.green[700]),
                 )
               ),
             ),

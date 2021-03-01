@@ -73,8 +73,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   )
                 ],
-                ),
               ),
+            ),
             SizedBox(height: 50.0,),
             OutlineButton(
               highlightColor: Colors.lightGreen[50],

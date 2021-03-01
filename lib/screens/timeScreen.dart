@@ -46,32 +46,34 @@ void startTimer(){
     Timer.periodic(Duration(
       seconds: 1,
     ), (Timer t){
-      setState(() {
-        if(timeForTimer < 1 || checkTimer == false){
-          t.cancel();
-          checkTimer = true;
-          displayTime = "Expired";
-        } 
-        else if(timeForTimer < 60) {
-          displayTime = timeForTimer <10
-          ?'0' + timeForTimer.toString()
-          : timeForTimer.toString();
-          timeForTimer = timeForTimer - 1;
-          } else if(timeForTimer < 3600) {
-            int m = timeForTimer ~/ 60;
-            int s = timeForTimer - (60 * m);
-            displayTime = '${formatTime(m)}:${formatTime(s)}'; 
+        setState(() {
+          if(timeForTimer < 1 || checkTimer == false){
+            t.cancel();
+            checkTimer = true;
+            displayTime = "Expired";
+          } 
+          else if(timeForTimer < 60) {
+            displayTime = timeForTimer <10
+            ?'0' + timeForTimer.toString()
+            : timeForTimer.toString();
             timeForTimer = timeForTimer - 1;
-          } else {
-            int h = timeForTimer ~/3600;
-            int t = timeForTimer - (3600 * h);
-            int m = t ~/ 60;
-            int s = t - (60 * m);
-            displayTime = '0' + h.toString() + ':${formatTime(m)}:${formatTime(s)}'; 
-            timeForTimer = timeForTimer - 1;
+            } else if(timeForTimer < 3600) {
+              int m = timeForTimer ~/ 60;
+              int s = timeForTimer - (60 * m);
+              displayTime = '${formatTime(m)}:${formatTime(s)}'; 
+              timeForTimer = timeForTimer - 1;
+            } else {
+              int h = timeForTimer ~/3600;
+              int t = timeForTimer - (3600 * h);
+              int m = t ~/ 60;
+              int s = t - (60 * m);
+              displayTime = '0' + h.toString() + ':${formatTime(m)}:${formatTime(s)}'; 
+              timeForTimer = timeForTimer - 1;
+            }
           }
-        });
-    });
+        );
+      }
+    );
   }
 
     String formatTime(int timenum) {
